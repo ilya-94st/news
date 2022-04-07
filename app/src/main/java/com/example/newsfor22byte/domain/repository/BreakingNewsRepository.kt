@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface BreakingNewsRepository {
 
-    fun getBreakingNews(country: String, category: String): Flow<PagingData<Article>>
+    fun getBreakingNews(country: String): Flow<PagingData<Article>>
 
 }

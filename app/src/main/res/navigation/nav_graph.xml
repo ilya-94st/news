@@ -9,7 +9,11 @@
         android:id="@+id/newsFragment"
         android:name="com.example.newsfor22byte.presentation.ui.fragments.breakingnews.NewsFragment"
         android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.newsfor22byte.presentation.ui.fragments.splash.SplashFragment"
@@ -20,5 +24,14 @@
             app:destination="@id/newsFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.newsfor22byte.presentation.ui.fragments.article.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" >
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 </navigation>

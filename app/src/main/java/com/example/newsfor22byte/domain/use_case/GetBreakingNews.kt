@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class GetBreakingNews @Inject constructor(private val breakingNewsRepository: BreakingNewsRepository) {
 
-    operator fun invoke(country: String, category: String) = breakingNewsRepository.getBreakingNews(country, category)
+    operator fun invoke(country: String) = breakingNewsRepository.getBreakingNews(country)
 
 }

@@ -20,7 +20,7 @@ class BreakingNewsAdapter : PagingDataAdapter<Article, BreakingNewsAdapter.NewsV
             override fun areItemsTheSame(oldItem: Article, newItem: Article) =
                 oldItem.id == newItem.id
             override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
+                return oldItem.id == newItem.id
             }
 
         }
@@ -48,6 +48,17 @@ class BreakingNewsAdapter : PagingDataAdapter<Article, BreakingNewsAdapter.NewsV
             holder.binding.tvSource.text = currentItem.source?.name
             holder.binding.tvTitle.text = currentItem.title
         }
-
+        holder.itemView.setOnClickListener {
+            onItemClickListener.let {
+                if (currentItem != null) {
+                    it(currentItem)
+                }
+            }
+        }
     }
-  }
+    private var onItemClickListener: (Article)->Unit = { article: Article -> Unit }
+
+    fun setOnItemClickListener(listener: (Article) ->Unit) {
+        onItemClickListener = listener
+    }
+}

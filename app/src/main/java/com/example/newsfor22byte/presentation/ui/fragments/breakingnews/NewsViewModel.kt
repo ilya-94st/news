@@ -9,5 +9,5 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsViewModel @Inject constructor(private val getBreakingNews: GetBreakingNews): ViewModel() {
 
-    fun getBreakingNews() = getBreakingNews.invoke(Constants.COUNTRY, Constants.CATEGORY)
+    fun getBreakingNews() = getBreakingNews.invoke(Constants.COUNTRY)
 }

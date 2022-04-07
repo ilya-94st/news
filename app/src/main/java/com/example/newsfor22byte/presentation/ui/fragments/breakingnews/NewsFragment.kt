@@ -6,9 +6,11 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.viewbinding.ViewBinding
+import com.example.newsfor22byte.R
 import com.example.newsfor22byte.databinding.FragmentNewsBinding
 import com.example.newsfor22byte.presentation.adapters.ArticleLoadAdapter
 import com.example.newsfor22byte.presentation.adapters.BreakingNewsAdapter
@@ -31,6 +33,12 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>() {
             viewModelNews.getBreakingNews().collectLatest {
                 articleAdapter.submitData(it)
             }
+        }
+        articleAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putString("url", it.url)
+            }
+            findNavController().navigate(R.id.action_newsFragment_to_articleFragment, bundle)
         }
     }
     private fun initAdapter() {

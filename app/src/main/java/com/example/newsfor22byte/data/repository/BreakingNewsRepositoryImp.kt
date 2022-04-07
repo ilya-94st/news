@@ -14,13 +14,13 @@ import javax.inject.Inject
 
 class BreakingNewsRepositoryImp @Inject constructor(private val apiNews: ApiNews): BreakingNewsRepository {
 
-    override fun getBreakingNews(country: String, category: String): Flow<PagingData<Article>> {
+    override fun getBreakingNews(country: String): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(
                 pageSize = Constants.PAGE_SIZE,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { ArticlePagingSource(apiNews, country = country, category = category) }
+            pagingSourceFactory = { ArticlePagingSource(apiNews, country = country) }
         ).flow
     }
 }

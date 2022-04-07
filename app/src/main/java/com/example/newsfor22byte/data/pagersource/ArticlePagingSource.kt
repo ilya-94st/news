@@ -11,8 +11,7 @@ import java.io.IOException
 
 class ArticlePagingSource(
     private val api: ApiNews,
-    private val country: String,
-    private val category: String
+    private val country: String
 
 ): PagingSource<Int, Article>() {
     override fun getRefreshKey(state: PagingState<Int, Article>): Int? {
@@ -25,7 +24,7 @@ class ArticlePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val position = params.key ?: STARTING_PAGE_INDEX
         return try {
-            val response = api.getBreakingNews(country = country, category = category, page = position, pageSize = params.loadSize)
+            val response = api.getBreakingNews(country = country, page = position, pageSize = params.loadSize)
             val article = response.body()!!.articles
             val nextKey = if (article.isEmpty()) {
                 null
