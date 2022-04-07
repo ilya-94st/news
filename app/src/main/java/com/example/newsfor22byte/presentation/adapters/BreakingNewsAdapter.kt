@@ -20,8 +20,7 @@ class BreakingNewsAdapter : PagingDataAdapter<Article, BreakingNewsAdapter.NewsV
             override fun areItemsTheSame(oldItem: Article, newItem: Article) =
                 oldItem.id == newItem.id
             override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-                return oldItem.id == newItem.id
-            }
+                return oldItem.id == newItem.id            }
 
         }
     }
